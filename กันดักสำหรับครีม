@@ -1,1 +1,238 @@
 
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local MarketplaceService = game:GetService("MarketplaceService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+-- [[ 🛰️ REMOTE CONFIG ]] --
+local VehicleRemote = ReplicatedStorage:WaitForChild("RE"):WaitForChild("1NoMoto1rVehicle1s")
+
+-- ======================== [[ SYSTEM ENCODE + JUNK (ANTI-DUMP) ]] ========================
+-- Junk string (ลงท้ายด้วย &%69=00 เรียบร้อย)
+local _JUNK = "rbxassetid://77402022463860& \n= [[EXD https://create.roblox.com/store/asset/77402022463860/EXD.COM ]]                                                                                          =Y9F%AB%F0%F0%9F%AB%9F%A4%9F%F0%A0%A7%94%F0%AB%90%9F%A4%AB%9F%9F%F0%A4%94%F0%9F%A7%F0%AB%90%A4%A0%F0%9F%F0%9F%AB%9F%9F%A0%94%F0%F0%A7%F0%A4%90%A4%AB%9F%F0%90%AB%A7%AB%F0%9F%9F%A0%9F%94%9F%F0%A4%F0%A4%E2%80%AE&%00&%00%E2%80%AE&%69%64=00%38%33%32%36%30%31%31%39%39%34%38%36%39%35&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%30%39%34%36%32%36%31%38%30%33%39%36%35%30&%00&%00&%00&%00%E2%80%AE&%69%64=00%39%33%39%33%32%38%32%39%33%34%37%34%34%33&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%30%36%38%30%30%35%37%37%32%36%34%30%31%35&%00&%00&%00&%00%E2%80%AE&%69%64=00%39%30%33%30%38%32%39%38%35%31%37%35%33%37&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%31%37%36%32%38%33%37%31%33%36%33%37%34%39&%00&%00&%00&%00%E2%80%AE&%69%64=00%38%33%38%34%38%32%30%31%39%38%31%39%30%30&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%33%34%30%37%36%39%31%36%34%32%31%36%38%35&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%31%36%38%37%32%39%35%35%39%37%30%32%35%34&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%32%39%30%34%33%38%32%37%39%39%32%30%33%35&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%33%37%30%35%38%30%39%39%38%32%36%38%36%37&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%32%31%33%32%30%38%32%35%37%37%32%37%36%31&%00&%00&%00&%00%E2%80%AE&%69%64=00%38%33%36%38%31%34%37%31%35%36%32%31%32%31&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%33%34%35%32%33%38%33%38%34%39%34%34%36%34&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%33%38%37%36%33%39%35%39%32%30%37%36%32%35&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%31%33%38%34%31%35%33%33%36%37%30%36%32%38&%00&%00&%00&%00%E2%80%AE&%69%64=00%37%30%35%36%37%36%35%34%39%33%33%35%34%36&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%31%37%34%32%34%37%34%37%33%38%37%35%32%35&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%31%32%35%38%33%39%37%32%30%34%32%30%36%33&%00&%00&%00&%00%E2%80%AE&%69%64=00%37%39%36%38%38%30%32%30%31%37%38%35%39%36&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%32%35%33%32%39%35%39%35%31%33%31%30%37%38&%00&%00&%00&%00%E2%80%AE&%69%64=00%39%33%33%33%38%39%31%38%32%35%36%39%36%32&%00&%00&%00&%00%E2%80%AE&%69%64=00%38%33%32%36%30%31%31%39%39%34%38%36%39%35&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%30%39%34%36%32%36%31%38%30%33%39%36%35%30&%00&%00&%00&%00%E2%80%AE&%69%64=00%39%33%39%33%32%38%32%39%33%34%37%34%34%33&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%30%36%38%30%30%35%37%37%32%36%34%30%31%35&%00&%00&%00&%00%E2%80%AE&%69%64=00%39%30%33%30%38%32%39%38%35%31%37%35%33%37&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%31%37%36%32%38%33%37%31%33%36%33%37%34%39&%00&%00&%00&%00%E2%80%AE&%69%64=00%38%33%38%34%38%32%30%31%39%38%31%39%30%30&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%33%34%30%37%36%39%31%36%34%32%31%36%38%35&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%31%36%38%37%32%39%35%35%39%37%30%32%35%34&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%32%39%30%34%33%38%32%37%39%39%32%30%33%35&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%33%37%30%35%38%30%39%39%38%32%36%38%36%37&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%32%31%33%32%30%38%32%35%37%37%32%37%36%31&%00&%00&%00&%00%E2%80%AE&%69%64=00%38%33%36%38%31%34%37%31%35%36%32%31%32%31&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%33%34%35%32%33%38%33%38%34%39%34%34%36%34&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%33%38%37%36%33%39%35%39%32%30%37%36%32%35&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%31%33%38%34%31%35%33%33%36%37%30%36%32%38&%00&%00&%00&%00%E2%80%AE&%69%64=00%37%30%35%36%37%36%35%34%39%33%33%35%34%36&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%31%37%34%32%34%37%34%37%33%38%37%35%32%35&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%31%32%35%38%33%39%37%32%30%34%32%30%36%33&%00&%00&%00&%00%E2%80%AE&%69%64=00%37%39%36%38%38%30%32%30%31%37%38%35%39%36&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%32%35%33%32%39%35%39%35%31%33%31%30%37%38&%00&%00&%00&%00%E2%80%AE&%69%64=00%39%33%33%33%38%39%31%38%32%35%36%39%36%32&%00&%00&%00&%00%E2%80%AE&%69%64=00%38%33%32%36%30%31%31%39%39%34%38%36%39%35&%00&%00&%00&%00%E2%80%AE&%69%64=00%31%30%39%34%36%32%36%31%38%30%33%39%36%35%30&%00&%00&%00&%00%E2%80%AE&%69=00"
+
+-- URL encode ธรรมดา (แปลงทุกตัวอักษรเป็น %XX)
+local function _urlEncode(str)
+    local hex = "0123456789ABCDEF"
+    local result = ""
+    for i = 1, #str do
+        local b = string.byte(str, i)
+        result = result .. "%" .. string.sub(hex, math.floor(b/16)+1, math.floor(b/16)+1) .. string.sub(hex, (b%16)+1, (b%16)+1)
+    end
+    return result
+end
+
+-- สร้าง payload สุดท้าย: Junk (ซึ่งลงท้ายด้วย &%69=00) + urlencode(ID)
+local function _buildPayload(realID)
+    return _JUNK .. _urlEncode(tostring(realID))
+end
+
+-- ตัวแปรเก็บ ID จริงแบบ plain (เพื่อใช้กับ VisualSound และแสดงผล)
+local _plainID = ""
+
+-- ======================== ส่วนที่เหลือของโค้ดเดิม (แก้เฉพาะ callback ปุ่มเล่น) ========================
+local Window = Rayfield:CreateWindow({
+   Name = "GuHon V19 | CLEAN BYPASS (By.Honkuki78)",
+   LoadingTitle = "GuHon XD & Honkuki78",
+   LoadingSubtitle = "Server-Side Audio Only",
+   ConfigurationSaving = { Enabled = false }
+})
+
+local CurrentID = ""
+local SelectedPlayer = ""
+local IsPlaying = false
+local StartTime = 0
+local SongDuration = 0
+local VisualSound = nil 
+
+-- [[ 🛡️ หมวดหมู่ 1: โค้ดเดิมมึง 100% (กุไม่แตะเลย!) ]] --
+local function CleanID(str)
+    if not str or type(str) ~= "string" then return nil end
+    local decoded = str
+    while decoded:find("%%") do
+        pcall(function() decoded = decoded:gsub("%%(%x%x)", function(hex) return string.char(tonumber(hex, 16)) end) end)
+    end
+    local allNumbers = {}
+    for num in decoded:gmatch("%d+") do table.insert(allNumbers, num) end
+    if #allNumbers > 0 then
+        local rawId = allNumbers[#allNumbers]
+        local cleaned = tostring(tonumber(rawId)) 
+        if #cleaned >= 6 then return cleaned end
+    end
+    return nil
+end
+
+local function DeepHunt(target)
+    if not target then return nil end
+    local foundData = nil
+    pcall(function()
+        local paths = {target.Character, target:FindFirstChild("Backpack"), target:FindFirstChild("PlayerGui")}
+        for _, path in pairs(paths) do
+            if path then
+                for _, obj in pairs(path:GetDescendants()) do
+                    local content = ""
+                    if obj:IsA("Sound") then content = obj.SoundId
+                    elseif obj:IsA("StringValue") or obj:IsA("TextLabel") then
+                        content = obj:IsA("StringValue") and obj.Value or obj.Text
+                    end
+                    local id = CleanID(content)
+                    if id then foundData = {ID = id, Source = obj.Name} break end
+                end
+            end
+            if foundData then break end
+        end
+    end)
+    return foundData
+end
+
+local function GetClosestPlayer()
+    local target, dist = nil, math.huge
+    local lp = game.Players.LocalPlayer
+    if not (lp.Character and lp.Character:FindFirstChild("HumanoidRootPart")) then return nil end
+    for _, p in pairs(game.Players:GetPlayers()) do
+        if p ~= lp and p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            local d = (lp.Character.HumanoidRootPart.Position - p.Character.HumanoidRootPart.Position).Magnitude
+            if d < dist then target, dist = p, d end
+        end
+    end
+    return target
+end
+
+local Tab1 = Window:CreateTab("Bypass Logger", 4483362458)
+Tab1:CreateSection("Developed By.Honkuki78")
+local ResultLabel = Tab1:CreateLabel("🎯 สถานะ: พร้อมเจาะรหัส (คงเดิม)")
+
+Tab1:CreateButton({
+   Name = "🛰️ [ ดึงคนใกล้ที่สุด ]",
+   Callback = function()
+       local target = GetClosestPlayer()
+       if target then
+           local data = DeepHunt(target)
+           if data then 
+               CurrentID = data.ID 
+               _plainID = data.ID  -- เก็บ plain สำหรับ VisualSound
+               ResultLabel:Set("✅ เจาะได้แล้ว! ID: " .. data.ID) 
+               setclipboard(data.ID) 
+           end
+       end
+   end
+})
+
+Tab1:CreateButton({
+   Name = "⚡ [ เจาะไอดีจริง (No Zeros) ]",
+   Callback = function()
+       if SelectedPlayer == "" then return end
+       local data = DeepHunt(game.Players:FindFirstChild(SelectedPlayer))
+       if data then 
+           CurrentID = data.ID
+           _plainID = data.ID
+           ResultLabel:Set("✅ เจาะได้แล้ว! ID: " .. data.ID) 
+           setclipboard(data.ID) 
+       end
+   end
+})
+
+local Dropdown = Tab1:CreateDropdown({
+   Name = "เลือกเป้าหมาย", Options = {}, CurrentOption = "",
+   Callback = function(v) SelectedPlayer = v[1] end,
+})
+local function Refresh()
+    local list = {}
+    for _, p in pairs(game.Players:GetPlayers()) do if p ~= game.Players.LocalPlayer then table.insert(list, p.Name) end end
+    Dropdown:Refresh(list, true)
+end
+Refresh()
+Tab1:CreateButton({Name = "🔄 รีเฟรชรายชื่อ", Callback = Refresh})
+
+-- [[ 📑 หมวดหมู่ 2: หน้าเปิดเพลง (Remote Only - ไม่ดังที่หู) 📑 ]] --
+local PlayTab = Window:CreateTab("Main Broadcast", 4483362458)
+PlayTab:CreateSection("Skateboard Remote Audio")
+
+local IDInput = PlayTab:CreateInput({
+   Name = "ไอดีเพลง", PlaceholderText = "ใส่ ID ที่นี่...",
+   Callback = function(Text) 
+       local cleaned = CleanID(Text) or Text
+       CurrentID = cleaned
+       _plainID = cleaned  -- เก็บ plain สำหรับ VisualSound
+   end,
+})
+
+local SongTitle = PlayTab:CreateLabel("🎵 เพลงที่สเก็ตบอร์ด: -")
+local SongDate = PlayTab:CreateLabel("📅 อัปโหลดเมื่อ: -")
+local TimeLabel = PlayTab:CreateLabel("⏳ เวลาเล่น: 00:00 / 00:00")
+local VisualLabel = PlayTab:CreateLabel("🔊 [ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ ]")
+
+local function FormatTime(s) return string.format("%02d:%02d", math.floor(s/60), s%60) end
+
+-- ปุ่มส่งรีโมท (เปลี่ยนแปลงเฉพาะส่วนนี้)
+PlayTab:CreateButton({
+   Name = "🔥 [ ส่งรีโมทเปิดเพลงเข้าสเก็ตบอร์ด ]",
+   Callback = function()
+       if _plainID == "" then return end
+       
+       -- สร้าง payload ที่ถูกเข้ารหัสและต่อท้าย junk
+       local payload = _buildPayload(_plainID)
+       
+       -- ส่ง remote ครั้งเดียวด้วย payload ที่ซ่อน ID จริง
+       VehicleRemote:FireServer("PickingScooterMusicText", payload, true)
+
+       -- ระบบ Visual (Volume 0 ไม่รบกวนหู) ยังคงใช้ ID จริง plain
+       if VisualSound then VisualSound:Destroy() end
+       VisualSound = Instance.new("Sound", game:GetService("SoundService"))
+       VisualSound.SoundId = "rbxassetid://".._plainID
+       VisualSound.Volume = 0 
+
+       task.spawn(function()
+           repeat task.wait() until VisualSound.TimeLength > 0
+           SongDuration = math.floor(VisualSound.TimeLength)
+           StartTime = tick()
+           IsPlaying = true
+           VisualSound:Play()
+           
+           local success, info = pcall(function() return MarketplaceService:GetProductInfo(tonumber(_plainID)) end)
+           if success and info then
+               SongTitle:Set("🎵 เพลง: " .. info.Name)
+               SongDate:Set("📅 เมื่อ: " .. info.Created)
+           else
+               SongTitle:Set("🎵 เพลง: ไม่พบข้อมูล")
+               SongDate:Set("📅 เมื่อ: -")
+           end
+       end)
+   end
+})
+
+PlayTab:CreateButton({
+   Name = "⏹️ หยุดส่งรีโมท",
+   Callback = function()
+       VehicleRemote:FireServer("PickingScooterMusicText", "", true)
+       if VisualSound then VisualSound:Stop(); VisualSound:Destroy(); VisualSound = nil end
+       IsPlaying = false
+       TimeLabel:Set("⏳ เวลาเล่น: 00:00 / 00:00")
+   end
+})
+
+-- [[ 🌈 ระบบ RGB & REAL-TIME SYNC 🌈 ]] --
+task.spawn(function()
+    local bars = {" ", " ", "▂", "▃", "▄", "▅", "▆", "▇", "█"}
+    while true do
+        local color = Color3.fromHSV(tick() % 5 / 5, 1, 1)
+        pcall(function() game:GetService("CoreGui").Rayfield.Main.Elements.BackgroundColor3 = color end)
+        
+        if IsPlaying and SongDuration > 0 then
+            local elapsed = math.floor(tick() - StartTime)
+            if elapsed <= SongDuration then
+                TimeLabel:Set("⏳ เวลาเล่น: " .. FormatTime(elapsed) .. " / " .. FormatTime(SongDuration))
+                local v = ""
+                for i = 1, 14 do
+                    local loudness = (VisualSound and VisualSound.PlaybackLoudness) or 0
+                    local scale = math.clamp(math.floor(loudness / 40) + math.random(-1,1), 1, #bars)
+                    v = v .. bars[scale]
+                end
+                VisualLabel:Set("🔊 [ " .. v .. " ]")
+            else
+                IsPlaying = false
+                TimeLabel:Set("⏳ จบเพลง")
+            end
+        end
+        task.wait(0.05)
+    end
+end)
